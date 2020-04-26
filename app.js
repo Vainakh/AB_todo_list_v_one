@@ -8,8 +8,12 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res){
+  
+  let today = new Date();
+  let currentDay = today.getDay();
+  let day = "";
 
-  switch( new Date().getDay()) {
+  switch( currentDay) {
     case 0:
       day = "Sunday";
       break;
@@ -21,7 +25,7 @@ app.get("/", function(req, res){
       break;
     case 3:
       day = "Wednesday";
-      break;case 0:
+      break;
     case 4:
       day = "Thursday";
       break;
@@ -36,13 +40,7 @@ app.get("/", function(req, res){
 
   }
 
-  if (day === 6 || day === 0){
-    today = "Weekend";
-  } else {
-    today = "Weekday";
-  }
-
-  res.render("list", { weekday: day });
+  res.render("list", { kindOfDay: day });
 
 });
 
